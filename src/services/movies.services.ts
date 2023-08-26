@@ -1,19 +1,25 @@
-import { Repository } from "typeorm";
 import { Movie } from "../entities";
-import { AppDataSource } from "../data-source";
-import { MovieCreate, MoviesRead } from "../interfaces";
+import { AppError } from "../errors";
+import { MovieCreate, MovieUpdate, MoviesRead } from "../interfaces";
+import { moviesRepo } from "../repositories";
 
 const create = async (payload: MovieCreate): Promise<Movie> => {
-  const repo: Repository<Movie> = AppDataSource.getRepository(Movie);
-  const movie: Movie = await repo.save(payload);
-
-  return movie;
+  return await moviesRepo.save(payload);
 };
 
 const read = async (): Promise<MoviesRead> => {
-  const repo: Repository<Movie> = AppDataSource.getRepository(Movie);
-  const movies: MoviesRead = await repo.find();
-  return movies;
+  return await moviesRepo.find();
 };
 
-export default { create, read };
+const update = async (
+  foundMovie: Movie,
+  payload: MovieUpdate
+): Promise<Movie> => {
+  return await moviesRepo.save({ ...foundMovie, ...payload });
+};
+
+const destroy = async (foundMovie: Movie): Promise<void> => {
+  await moviesRepo.remove(foundMovie);
+};
+
+export default { create, read, update, destroy };

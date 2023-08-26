@@ -1,9 +1,10 @@
 import { z } from "zod";
-import { movieCreateSchema, movieSchema, movieUpdateSchema } from "../schemas";
+import { movieCreateSchema } from "../schemas";
+import { DeepPartial } from "typeorm";
+import { Movie } from "../entities";
 
-type Movie = z.infer<typeof movieSchema>;
 type MoviesRead = Movie[];
 type MovieCreate = z.infer<typeof movieCreateSchema>;
-type MovieUpdate = z.infer<typeof movieUpdateSchema>;
+type MovieUpdate = DeepPartial<Movie>;
 
-export { Movie, MoviesRead, MovieCreate, MovieUpdate };
+export { MoviesRead, MovieCreate, MovieUpdate };
