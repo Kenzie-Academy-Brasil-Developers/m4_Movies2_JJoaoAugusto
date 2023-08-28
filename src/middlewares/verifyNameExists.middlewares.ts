@@ -14,7 +14,5 @@ export const verifyNameExists = async (
 
   if (foundMovie) throw new AppError("Movie already exists.", 409);
 
-  res.locals = { ...res.locals, foundMovie };
-
   return next();
 };

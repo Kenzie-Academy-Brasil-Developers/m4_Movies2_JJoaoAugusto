@@ -14,8 +14,9 @@ moviesRouter.post(
 );
 moviesRouter.patch(
   "/:id",
-  middlewares.validateBody(movieUpdateSchema),
   middlewares.verifyIdExists,
+  middlewares.verifyNameExists,
+  middlewares.validateBody(movieUpdateSchema),
   moviesControllers.update
 );
 moviesRouter.delete(
