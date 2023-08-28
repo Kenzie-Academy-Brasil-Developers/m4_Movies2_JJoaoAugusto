@@ -8,6 +8,7 @@ export const moviesRouter: Router = Router();
 moviesRouter.get("", middlewares.pagination, moviesControllers.read);
 moviesRouter.post(
   "",
+  middlewares.verifyNameExists,
   middlewares.validateBody(movieCreateSchema),
   moviesControllers.create
 );
