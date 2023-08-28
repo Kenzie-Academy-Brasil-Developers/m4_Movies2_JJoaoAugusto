@@ -21,7 +21,7 @@ export const pagination = (
   const queryOrder: any = req.query.order;
 
   const orderOpts: Array<string> = ["asc", "desc"];
-  const sortOpts: Array<string> = ["price", "stock"];
+  const sortOpts: Array<string> = ["price", "duration"];
 
   let sort: string;
   let order: string;

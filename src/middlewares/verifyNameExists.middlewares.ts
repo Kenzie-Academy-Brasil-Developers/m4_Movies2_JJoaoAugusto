@@ -8,6 +8,10 @@ export const verifyNameExists = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
+  if (!req.body.name) {
+    return next();
+  }
+
   const foundMovie: Movie | null = await moviesRepo.findOneBy({
     name: req.body.name,
   });
