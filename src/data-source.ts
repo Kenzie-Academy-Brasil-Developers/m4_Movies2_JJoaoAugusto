@@ -29,13 +29,11 @@ const dataSourceConfig = (): DataSourceOptions => {
   return {
     type: "postgres",
     url: dbUrl,
-    synchronize: false,
     logging: true,
     entities: [entitiesPath],
     migrations: [migrationsPath],
   };
 };
-console.log(dataSourceConfig());
 const AppDataSource = new DataSource(dataSourceConfig());
 
 export { AppDataSource };

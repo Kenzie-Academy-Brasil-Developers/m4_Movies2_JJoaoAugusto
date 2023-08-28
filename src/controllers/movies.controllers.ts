@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Movie } from "../entities";
 import moviesServices from "../services";
-import { MoviesRead, Pagination } from "../interfaces";
+import { Pagination } from "../interfaces";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
   const { body } = req;
