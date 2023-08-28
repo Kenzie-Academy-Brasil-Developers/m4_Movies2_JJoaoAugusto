@@ -5,7 +5,7 @@ import { movieCreateSchema, movieUpdateSchema } from "../schemas";
 
 export const moviesRouter: Router = Router();
 
-moviesRouter.get("", moviesControllers.read);
+moviesRouter.get("", middlewares.pagination, moviesControllers.read);
 moviesRouter.post(
   "",
   middlewares.validateBody(movieCreateSchema),
